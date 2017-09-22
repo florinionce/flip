@@ -94,7 +94,9 @@
       var self = this;
       // Providing a nicely wrapped up callback because transform is essentially async
       self.element.one(whichTransitionEvent(), function() {
-        self.element.trigger('flip:done');
+        if (callback !== 'manualTrigger') {
+          self.element.trigger('flip:done');
+        }
         if (typeof callback === 'function') {
           callback.call(self.element);
         }
